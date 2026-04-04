@@ -143,9 +143,9 @@
   </div>
 
   <div id="done">
-    <div class="check">✅</div>
-    <h2>登録完了しました！</h2>
-    <p>
+    <div class="check" id="done-icon">✅</div>
+    <h2 id="done-title">登録完了しました！</h2>
+    <p id="done-body">
       担当者がスプレッドシートを準備して<br>
       このLINEとメールにご連絡します。<br><br>
       もうしばらくお待ちください🙏
@@ -198,8 +198,17 @@
         body: JSON.stringify({ line_user_id: lineUserId, name, email })
       });
       if (!resp.ok) throw new Error();
+      const json = await resp.json();
       document.getElementById('form-area').style.display = 'none';
-      document.getElementById('done').style.display = 'block';
+      const done = document.getElementById('done');
+      done.style.display = 'block';
+      if (json.status === 'already_registered') {
+        document.getElementById('done-icon').textContent = 'ℹ️';
+        document.getElementById('done-title').textContent = 'すでに登録済みです';
+        document.getElementById('done-body').innerHTML =
+          'このLINEアカウントはすでに登録されています。<br><br>' +
+          '音声を送ると日報が記録できます🎙️';
+      }
     } catch {
       errEl.textContent = '送信に失敗しました。もう一度お試しください。';
       errEl.style.display = 'block';
