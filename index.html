@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>音声日報サービス 利用登録</title>
+  <script src="https://static.line-scdn.net/liff/edge/versions/2.22.3/sdk.js"></script>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: "Hiragino Sans", "Noto Sans JP", sans-serif;
+      background: #f5f5f5;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+
+    .card {
+      background: #fff;
+      border-radius: 16px;
+      padding: 32px 24px;
+      max-width: 400px;
+      width: 100%;
+      box-shadow: 0 2px 16px rgba(0,0,0,0.08);
+    }
+
+    .icon { font-size: 40px; text-align: center; margin-bottom: 12px; }
+
+    h1 {
+      font-size: 18px;
+      font-weight: 700;
+      text-align: center;
+      color: #1a1a1a;
+      margin-bottom: 8px;
+    }
+
+    .desc {
+      font-size: 13px;
+      color: #666;
+      text-align: center;
+      line-height: 1.8;
+      margin-bottom: 28px;
+    }
+
+    label {
+      display: block;
+      font-size: 13px;
+      font-weight: 700;
+      color: #333;
+      margin-bottom: 6px;
+    }
+
+    input {
+      width: 100%;
+      padding: 12px 14px;
+      border: 1.5px solid #ddd;
+      border-radius: 10px;
+      font-size: 15px;
+      outline: none;
+      transition: border-color 0.2s;
+      margin-bottom: 20px;
+    }
+
+    input:focus { border-color: #06C755; }
+
+    .note {
+      font-size: 11px;
+      color: #999;
+      margin-top: -14px;
+      margin-bottom: 20px;
+    }
+
+    button {
+      width: 100%;
+      padding: 14px;
+      background: #06C755;
+      color: #fff;
+      border: none;
+      border-radius: 10px;
+      font-size: 16px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: opacity 0.2s;
+    }
+
+    button:disabled { opacity: 0.5; cursor: not-allowed; }
+    button:active { opacity: 0.85; }
+
+    .privacy {
+      font-size: 11px;
+      color: #aaa;
+      text-align: center;
+      margin-top: 16px;
+      line-height: 1.7;
+    }
+
+    #done {
+      display: none;
+      text-align: center;
+    }
+
+    #done .check { font-size: 56px; margin-bottom: 16px; }
+    #done h2 { font-size: 18px; font-weight: 700; margin-bottom: 12px; }
+    #done p { font-size: 13px; color: #666; line-height: 1.8; }
+
+    #error-msg {
+      color: #e53e3e;
+      font-size: 13px;
+      text-align: center;
+      margin-top: 12px;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+<div class="card">
+
+  <div id="form-area">
+    <div class="icon">🎙️</div>
+    <h1>音声日報サービス<br>利用登録</h1>
+    <p class="desc">
+      音声を送るだけで日報が自動記録される<br>
+      サービスの利用登録を行います。<br>
+      以下の情報を入力してください。
+    </p>
+
+    <label>お名前（フルネーム）</label>
+    <input type="text" id="name" placeholder="例）桂太郎" autocomplete="name">
+
+    <label>メールアドレス</label>
+    <input type="email" id="email" placeholder="例）example@email.com" autocomplete="email">
+    <p class="note">※ スプレッドシートのご案内をお送りします</p>
+
+    <button id="submit-btn" onclick="submit()">登録する</button>
+    <p id="error-msg"></p>
+
+    <p class="privacy">
+      入力いただいた情報は本サービスの運営のみに使用し、<br>第三者への提供は行いません。
+    </p>
+  </div>
+
+  <div id="done">
+    <div class="check">✅</div>
+    <h2>登録完了しました！</h2>
+    <p>
+      担当者がスプレッドシートを準備して<br>
+      このLINEとメールにご連絡します。<br><br>
+      もうしばらくお待ちください🙏
+    </p>
+  </div>
+
+</div>
+
+<script>
+  const LIFF_ID = '2009693703-ONMSHAXr';
+  const REGISTER_URL = 'https://nichishi-bot-557188870439.asia-northeast1.run.app/register';
+
+  let lineUserId = null;
+
+  liff.init({ liffId: LIFF_ID }).then(() => {
+    if (liff.isLoggedIn()) {
+      liff.getProfile().then(profile => {
+        lineUserId = profile.userId;
+      });
+    } else {
+      liff.login();
+    }
+  });
+
+  async function submit() {
+    const name = document.getElementById('name').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const btn = document.getElementById('submit-btn');
+    const errEl = document.getElementById('error-msg');
+
+    if (!name || !email) {
+      errEl.textContent = '名前とメールアドレスを入力してください。';
+      errEl.style.display = 'block';
+      return;
+    }
+    if (!email.includes('@')) {
+      errEl.textContent = 'メールアドレスの形式が正しくありません。';
+      errEl.style.display = 'block';
+      return;
+    }
+
+    btn.disabled = true;
+    btn.textContent = '送信中...';
+    errEl.style.display = 'none';
+
+    try {
+      const resp = await fetch(REGISTER_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ line_user_id: lineUserId, name, email })
+      });
+      if (!resp.ok) throw new Error();
+      document.getElementById('form-area').style.display = 'none';
+      document.getElementById('done').style.display = 'block';
+    } catch {
+      errEl.textContent = '送信に失敗しました。もう一度お試しください。';
+      errEl.style.display = 'block';
+      btn.disabled = false;
+      btn.textContent = '登録する';
+    }
+  }
+</script>
+</body>
+</html>
