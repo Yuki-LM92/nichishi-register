@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>音声日報サービス 使い方ガイド</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: "Hiragino Sans", "Noto Sans JP", sans-serif;
+      background: #f0f4f0;
+      color: #1a1a1a;
+      font-size: 16px;
+      line-height: 1.7;
+      padding-bottom: 48px;
+    }
+
+    /* ヘッダー */
+    .hero {
+      background: #06C755;
+      color: white;
+      text-align: center;
+      padding: 36px 20px 28px;
+    }
+    .hero .icon { font-size: 48px; margin-bottom: 10px; }
+    .hero h1 { font-size: 22px; font-weight: 800; margin-bottom: 6px; }
+    .hero p { font-size: 15px; opacity: 0.9; }
+
+    /* セクション */
+    section {
+      margin: 20px 16px 0;
+    }
+
+    .section-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: #06C755;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
+    /* カード */
+    .card {
+      background: white;
+      border-radius: 16px;
+      padding: 20px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    }
+
+    /* 3ステップ */
+    .steps {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .step {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+    }
+
+    .step-num {
+      min-width: 36px;
+      height: 36px;
+      background: #06C755;
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      font-weight: 800;
+      flex-shrink: 0;
+    }
+
+    .step-body h3 {
+      font-size: 17px;
+      font-weight: 700;
+      margin-bottom: 3px;
+    }
+
+    .step-body p {
+      font-size: 14px;
+      color: #555;
+    }
+
+    .step-arrow {
+      text-align: center;
+      font-size: 22px;
+      color: #ccc;
+      padding: 2px 0;
+    }
+
+    /* 音声の送り方 */
+    .mic-guide {
+      background: #f8fdf8;
+      border: 2px solid #06C755;
+      border-radius: 16px;
+      padding: 20px;
+    }
+
+    .mic-guide h3 {
+      font-size: 17px;
+      font-weight: 700;
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .mic-steps {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .mic-step {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: white;
+      border-radius: 12px;
+      padding: 12px 14px;
+    }
+
+    .mic-step .emoji { font-size: 28px; flex-shrink: 0; }
+    .mic-step .text { font-size: 14px; }
+    .mic-step .text strong { display: block; font-size: 15px; margin-bottom: 2px; }
+
+    /* ボタン説明 */
+    .btn-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .btn-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 14px;
+      border-radius: 12px;
+      background: #f9f9f9;
+    }
+
+    .btn-label {
+      flex-shrink: 0;
+      font-size: 14px;
+      font-weight: 700;
+      padding: 6px 12px;
+      border-radius: 20px;
+      background: white;
+      border: 1.5px solid #ddd;
+      white-space: nowrap;
+    }
+
+    .btn-desc {
+      font-size: 14px;
+      color: #444;
+      padding-top: 4px;
+    }
+
+    /* FAQ */
+    .faq-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .faq-item {
+      background: #f9f9f9;
+      border-radius: 12px;
+      padding: 14px 16px;
+    }
+
+    .faq-q {
+      font-size: 15px;
+      font-weight: 700;
+      margin-bottom: 6px;
+      display: flex;
+      gap: 8px;
+    }
+
+    .faq-q .q-badge {
+      color: #06C755;
+      font-weight: 800;
+      flex-shrink: 0;
+    }
+
+    .faq-a {
+      font-size: 14px;
+      color: #444;
+      padding-left: 20px;
+    }
+
+    /* ポイント吹き出し */
+    .tip {
+      background: #fffbe6;
+      border-left: 4px solid #f5c400;
+      border-radius: 0 12px 12px 0;
+      padding: 12px 14px;
+      font-size: 14px;
+      margin-top: 12px;
+    }
+
+    .tip strong { display: block; margin-bottom: 4px; }
+  </style>
+</head>
+<body>
+
+<!-- ヘッダー -->
+<div class="hero">
+  <div class="icon">🎙️</div>
+  <h1>音声日報サービス<br>使い方ガイド</h1>
+  <p>話すだけで、日報が完成します</p>
+</div>
+
+<!-- 基本の流れ -->
+<section>
+  <p class="section-title">基本の使い方</p>
+  <div class="card">
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-body">
+          <h3>🎤 音声を送る</h3>
+          <p>LINEのマイクボタンを長押しして、<br>今日の業務内容を話します</p>
+        </div>
+      </div>
+      <div class="step-arrow">↓</div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-body">
+          <h3>📋 内容を確認する</h3>
+          <p>AIが話した内容を整理して<br>日報の形にまとめてくれます</p>
+        </div>
+      </div>
+      <div class="step-arrow">↓</div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-body">
+          <h3>✅ 「はい」をタップ</h3>
+          <p>内容が正しければ「はい」を押すと<br>スプレッドシートに自動で記録されます</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="tip">
+      <strong>💡 これだけでOK！</strong>
+      移動中や帰り道に、今日あったことを<br>ひとこと話すだけで日報が完成します。
+    </div>
+  </div>
+</section>
+
+<!-- 音声の送り方 -->
+<section>
+  <p class="section-title">音声の送り方（LINE操作）</p>
+  <div class="mic-guide">
+    <h3>📱 LINEでの操作手順</h3>
+    <div class="mic-steps">
+      <div class="mic-step">
+        <div class="emoji">1️⃣</div>
+        <div class="text">
+          <strong>LINEのトーク画面を開く</strong>
+          「音声日報サービス」のトーク画面を開きます
+        </div>
+      </div>
+      <div class="mic-step">
+        <div class="emoji">🎙️</div>
+        <div class="text">
+          <strong>マイクボタンを長押し</strong>
+          文字入力欄の右側にある<br>マイクのアイコンを長押しします
+        </div>
+      </div>
+      <div class="mic-step">
+        <div class="emoji">🗣️</div>
+        <div class="text">
+          <strong>話す</strong>
+          ボタンを押したまま、今日の業務を話します<br>
+          <span style="color:#06C755; font-size:13px;">目安：15秒〜2分程度</span>
+        </div>
+      </div>
+      <div class="mic-step">
+        <div class="emoji">📤</div>
+        <div class="text">
+          <strong>指を離して送信</strong>
+          話し終わったら指を離すと自動で送信されます
+        </div>
+      </div>
+    </div>
+
+    <div class="tip" style="margin-top:14px;">
+      <strong>⏱️ 少し待ってください</strong>
+      送信後、AIが内容を整理するため<br>10〜30秒ほどかかります。
+    </div>
+  </div>
+</section>
+
+<!-- ボタンの説明 -->
+<section>
+  <p class="section-title">ボタンの説明</p>
+  <div class="card">
+    <div class="btn-list">
+      <div class="btn-item">
+        <div class="btn-label">✅ はい</div>
+        <div class="btn-desc">内容が正しければタップ。スプレッドシートに記録されます。</div>
+      </div>
+      <div class="btn-item">
+        <div class="btn-label">✏️ 修正する</div>
+        <div class="btn-desc">内容に間違いがあれば、修正したい箇所をテキストで伝えられます。<br><span style="font-size:13px; color:#888;">例）「マクドナルドはバーガーキングでした」</span></div>
+      </div>
+      <div class="btn-item">
+        <div class="btn-label">⛔ キャンセル</div>
+        <div class="btn-desc">記録をやめたいときにタップ。何も記録されません。</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section>
+  <p class="section-title">よくある質問</p>
+  <div class="card">
+    <div class="faq-list">
+      <div class="faq-item">
+        <div class="faq-q"><span class="q-badge">Q</span>うまく送れなかったときはどうすれば？</div>
+        <div class="faq-a">もう一度音声を送り直してください。何度でも送り直せます。記録は「はい」を押したときだけ行われます。</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q"><span class="q-badge">Q</span>記録はどこで見られますか？</div>
+        <div class="faq-a">メニューの「スプレッドシートを開く」から確認できます。日付ごとにシートが分かれています。</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q"><span class="q-badge">Q</span>毎日送らないといけませんか？</div>
+        <div class="faq-a">いいえ。業務のある日だけで大丈夫です。送らない日があっても問題ありません。</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q"><span class="q-badge">Q</span>登録直後にスプレッドシートが開けません</div>
+        <div class="faq-a">ご登録後、管理者がスプレッドシートを準備します。1〜3日ほどお時間をいただく場合があります。準備ができたらご連絡します。</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q"><span class="q-badge">Q</span>個人の日報は他の人に見えますか？</div>
+        <div class="faq-a">いいえ。スプレッドシートはおひとりずつ別々に管理されています。</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- フッター -->
+<section style="margin-top: 24px; text-align: center;">
+  <div style="font-size: 13px; color: #aaa; line-height: 2;">
+    困ったことがあれば<br>
+    メニューの「フィードバック・お問い合わせ」から<br>
+    いつでもご連絡ください🙏
+  </div>
+</section>
+
+</body>
+</html>
