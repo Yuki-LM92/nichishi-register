@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>音声日報サービス 使い方ガイド</title>
+  <title>業務日誌サービス 使い方ガイド</title>
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -28,9 +28,7 @@
     .hero p { font-size: 15px; opacity: 0.9; }
 
     /* セクション */
-    section {
-      margin: 20px 16px 0;
-    }
+    section { margin: 20px 16px 0; }
 
     .section-title {
       font-size: 13px;
@@ -49,185 +47,169 @@
       box-shadow: 0 2px 8px rgba(0,0,0,0.06);
     }
 
-    /* 3ステップ */
-    .steps {
+    /* できること3つ */
+    .features {
       display: flex;
       flex-direction: column;
-      gap: 12px;
+      gap: 10px;
     }
-
-    .step {
-      display: flex;
-      align-items: flex-start;
-      gap: 14px;
-    }
-
-    .step-num {
-      min-width: 36px;
-      height: 36px;
-      background: #06C755;
-      color: white;
-      border-radius: 50%;
+    .feature-item {
       display: flex;
       align-items: center;
-      justify-content: center;
-      font-size: 18px;
-      font-weight: 800;
-      flex-shrink: 0;
+      gap: 14px;
+      background: #f4fdf4;
+      border-radius: 12px;
+      padding: 14px 16px;
+      border-left: 4px solid #06C755;
     }
+    .feature-icon { font-size: 28px; flex-shrink: 0; }
+    .feature-body h3 { font-size: 16px; font-weight: 700; margin-bottom: 2px; }
+    .feature-body p { font-size: 13px; color: #555; }
 
-    .step-body h3 {
-      font-size: 17px;
-      font-weight: 700;
-      margin-bottom: 3px;
+    /* ステップリスト共通 */
+    .steps { display: flex; flex-direction: column; gap: 12px; }
+    .step { display: flex; align-items: flex-start; gap: 14px; }
+    .step-num {
+      min-width: 36px; height: 36px;
+      background: #06C755; color: white;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 18px; font-weight: 800; flex-shrink: 0;
     }
+    .step-body h3 { font-size: 17px; font-weight: 700; margin-bottom: 3px; }
+    .step-body p { font-size: 14px; color: #555; }
+    .step-arrow { text-align: center; font-size: 22px; color: #ccc; padding: 2px 0; }
 
-    .step-body p {
-      font-size: 14px;
-      color: #555;
+    /* 操作手順（音声・写真） */
+    .op-steps { display: flex; flex-direction: column; gap: 10px; }
+    .op-step {
+      display: flex; align-items: center; gap: 12px;
+      background: white; border-radius: 12px; padding: 12px 14px;
     }
+    .op-step .emoji { font-size: 26px; flex-shrink: 0; }
+    .op-step .text { font-size: 14px; }
+    .op-step .text strong { display: block; font-size: 15px; margin-bottom: 2px; }
 
-    .step-arrow {
-      text-align: center;
-      font-size: 22px;
-      color: #ccc;
-      padding: 2px 0;
-    }
-
-    /* 音声の送り方 */
-    .mic-guide {
+    /* 入力方法セクション枠 */
+    .method-card {
       background: #f8fdf8;
       border: 2px solid #06C755;
       border-radius: 16px;
       padding: 20px;
     }
-
-    .mic-guide h3 {
-      font-size: 17px;
-      font-weight: 700;
+    .method-card h3 {
+      font-size: 17px; font-weight: 700;
       margin-bottom: 14px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
+      display: flex; align-items: center; gap: 8px;
+    }
+    .method-label {
+      display: inline-block;
+      background: #06C755; color: white;
+      font-size: 11px; font-weight: 700;
+      padding: 2px 10px; border-radius: 20px;
+      margin-right: 6px;
+    }
+    .method-label.sub {
+      background: #4a90d9;
     }
 
-    .mic-steps {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
+    /* 区切り */
+    .divider {
+      text-align: center; color: #ccc; font-size: 13px;
+      margin: 14px 0; letter-spacing: 2px;
     }
-
-    .mic-step {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      background: white;
-      border-radius: 12px;
-      padding: 12px 14px;
-    }
-
-    .mic-step .emoji { font-size: 28px; flex-shrink: 0; }
-    .mic-step .text { font-size: 14px; }
-    .mic-step .text strong { display: block; font-size: 15px; margin-bottom: 2px; }
 
     /* ボタン説明 */
-    .btn-list {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-
+    .btn-list { display: flex; flex-direction: column; gap: 10px; }
     .btn-item {
-      display: flex;
-      align-items: flex-start;
-      gap: 12px;
-      padding: 14px;
-      border-radius: 12px;
-      background: #f9f9f9;
+      display: flex; align-items: flex-start; gap: 12px;
+      padding: 14px; border-radius: 12px; background: #f9f9f9;
     }
-
     .btn-label {
-      flex-shrink: 0;
-      font-size: 14px;
-      font-weight: 700;
-      padding: 6px 12px;
-      border-radius: 20px;
-      background: white;
-      border: 1.5px solid #ddd;
-      white-space: nowrap;
+      flex-shrink: 0; font-size: 14px; font-weight: 700;
+      padding: 6px 12px; border-radius: 20px;
+      background: white; border: 1.5px solid #ddd; white-space: nowrap;
     }
-
-    .btn-desc {
-      font-size: 14px;
-      color: #444;
-      padding-top: 4px;
-    }
+    .btn-desc { font-size: 14px; color: #444; padding-top: 4px; }
 
     /* FAQ */
-    .faq-list {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-
-    .faq-item {
-      background: #f9f9f9;
-      border-radius: 12px;
-      padding: 14px 16px;
-    }
-
+    .faq-list { display: flex; flex-direction: column; gap: 12px; }
+    .faq-item { background: #f9f9f9; border-radius: 12px; padding: 14px 16px; }
     .faq-q {
-      font-size: 15px;
-      font-weight: 700;
-      margin-bottom: 6px;
-      display: flex;
-      gap: 8px;
+      font-size: 15px; font-weight: 700; margin-bottom: 6px;
+      display: flex; gap: 8px;
     }
+    .faq-q .q-badge { color: #06C755; font-weight: 800; flex-shrink: 0; }
+    .faq-a { font-size: 14px; color: #444; padding-left: 20px; }
 
-    .faq-q .q-badge {
-      color: #06C755;
-      font-weight: 800;
-      flex-shrink: 0;
-    }
-
-    .faq-a {
-      font-size: 14px;
-      color: #444;
-      padding-left: 20px;
-    }
-
-    /* ポイント吹き出し */
+    /* ヒント */
     .tip {
       background: #fffbe6;
       border-left: 4px solid #f5c400;
       border-radius: 0 12px 12px 0;
-      padding: 12px 14px;
-      font-size: 14px;
-      margin-top: 12px;
+      padding: 12px 14px; font-size: 14px; margin-top: 12px;
     }
-
     .tip strong { display: block; margin-bottom: 4px; }
+
+    /* 注意 */
+    .caution {
+      background: #fff3f3;
+      border-left: 4px solid #e53935;
+      border-radius: 0 12px 12px 0;
+      padding: 12px 14px; font-size: 14px; margin-top: 12px;
+    }
+    .caution strong { display: block; margin-bottom: 4px; color: #c62828; }
   </style>
 </head>
 <body>
 
 <!-- ヘッダー -->
 <div class="hero">
-  <div class="icon">🎙️</div>
-  <h1>音声日報サービス<br>使い方ガイド</h1>
-  <p>話すだけで、日報が完成します</p>
+  <div class="icon">📋</div>
+  <h1>業務日誌サービス<br>使い方ガイド</h1>
+  <p>音声でもテキストでも、日誌が完成します</p>
 </div>
+
+<!-- できること -->
+<section>
+  <p class="section-title">このサービスでできること</p>
+  <div class="card">
+    <div class="features">
+      <div class="feature-item">
+        <div class="feature-icon">🎤</div>
+        <div class="feature-body">
+          <h3>音声で送る</h3>
+          <p>話すだけでAIが日誌の形に整理します</p>
+        </div>
+      </div>
+      <div class="feature-item">
+        <div class="feature-icon">📝</div>
+        <div class="feature-body">
+          <h3>テキストで送る</h3>
+          <p>文章を入力してもOK。音声が使えないときに便利</p>
+        </div>
+      </div>
+      <div class="feature-item">
+        <div class="feature-icon">📸</div>
+        <div class="feature-body">
+          <h3>写真を追加する</h3>
+          <p>活動写真を日誌に紐づけて記録できます</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
 <!-- 基本の流れ -->
 <section>
-  <p class="section-title">基本の使い方</p>
+  <p class="section-title">基本の流れ</p>
   <div class="card">
     <div class="steps">
       <div class="step">
         <div class="step-num">1</div>
         <div class="step-body">
-          <h3>🎤 音声を送る</h3>
-          <p>LINEのマイクボタンを長押しして、<br>今日の業務内容を話します</p>
+          <h3>🎤 音声 または 📝 テキストを送る</h3>
+          <p>今日の業務内容を話すか、文章で入力して送ります</p>
         </div>
       </div>
       <div class="step-arrow">↓</div>
@@ -235,7 +217,8 @@
         <div class="step-num">2</div>
         <div class="step-body">
           <h3>📋 内容を確認する</h3>
-          <p>AIが話した内容を整理して<br>日報の形にまとめてくれます</p>
+          <p>AIが内容を日誌の形に整理して表示します<br>
+          <span style="font-size:13px; color:#06C755;">（10〜30秒ほどかかります）</span></p>
         </div>
       </div>
       <div class="step-arrow">↓</div>
@@ -243,65 +226,130 @@
         <div class="step-num">3</div>
         <div class="step-body">
           <h3>✅ 「はい」をタップ</h3>
-          <p>内容が正しければ「はい」を押すと<br>スプレッドシートに自動で記録されます</p>
+          <p>内容が正しければタップするとスプレッドシートに自動記録されます</p>
         </div>
       </div>
     </div>
-
     <div class="tip">
-      <strong>💡 これだけでOK！</strong>
-      移動中や帰り道に、今日あったことを<br>ひとこと話すだけで日報が完成します。
+      <strong>💡 移動中もOK！</strong>
+      帰り道や移動中に、今日あったことを<br>
+      ひとこと話す or 打つだけで日誌が完成します。
     </div>
   </div>
 </section>
 
-<!-- 音声の送り方 -->
+<!-- 入力方法① 音声 -->
 <section>
-  <p class="section-title">音声の送り方（LINE操作）</p>
-  <div class="mic-guide">
-    <h3>📱 LINEでの操作手順</h3>
-    <div class="mic-steps">
-      <div class="mic-step">
+  <p class="section-title">入力方法</p>
+
+  <div class="method-card">
+    <h3><span class="method-label">方法①</span>🎤 音声で送る（おすすめ）</h3>
+    <div class="op-steps">
+      <div class="op-step">
         <div class="emoji">1️⃣</div>
         <div class="text">
-          <strong>LINEのトーク画面を開く</strong>
-          「音声日報サービス」のトーク画面を開きます
+          <strong>画面左下のキーボードマークをタップ</strong>
+          入力エリアが表示されます
         </div>
       </div>
-      <div class="mic-step">
+      <div class="op-step">
         <div class="emoji">🎙️</div>
         <div class="text">
-          <strong>マイクボタンを長押し</strong>
-          文字入力欄の右側にある<br>マイクのアイコンを長押しします
+          <strong>スタンプボタンの右にあるマイクボタンをタップ</strong>
+          録音が始まります
         </div>
       </div>
-      <div class="mic-step">
+      <div class="op-step">
         <div class="emoji">🗣️</div>
         <div class="text">
-          <strong>話す</strong>
-          ボタンを押したまま、今日の業務を話します<br>
+          <strong>今日の業務内容を話す</strong>
           <span style="color:#06C755; font-size:13px;">目安：15秒〜2分程度</span>
         </div>
       </div>
-      <div class="mic-step">
+      <div class="op-step">
         <div class="emoji">📤</div>
         <div class="text">
-          <strong>指を離して送信</strong>
-          話し終わったら指を離すと自動で送信されます
+          <strong>もう一度マイクボタンをタップ</strong>
+          録音が止まり、自動で送信されます
         </div>
       </div>
     </div>
-
     <div class="tip" style="margin-top:14px;">
       <strong>⏱️ 少し待ってください</strong>
-      送信後、AIが内容を整理するため<br>10〜30秒ほどかかります。
+      送信後、AIが整理するまで10〜30秒かかります。<br>
+      メッセージが届くまでそのままお待ちください。
+    </div>
+  </div>
+
+  <div class="divider" style="margin-top:14px;">── または ──</div>
+
+  <div class="method-card" style="border-color:#4a90d9; background:#f5f9ff; margin-top:14px;">
+    <h3><span class="method-label sub">方法②</span>📝 テキストで送る</h3>
+    <div class="op-steps">
+      <div class="op-step">
+        <div class="emoji">⌨️</div>
+        <div class="text">
+          <strong>トーク画面に今日の業務内容を入力して送信</strong>
+          普通のメッセージを送るのと同じ操作です
+        </div>
+      </div>
+      <div class="op-step">
+        <div class="emoji">📋</div>
+        <div class="text">
+          <strong>AIが内容を日誌の形に整理して表示</strong>
+          確認して「✅ はい」をタップすれば記録完了
+        </div>
+      </div>
+    </div>
+    <div class="tip" style="margin-top:14px; border-left-color:#4a90d9; background:#eef4ff;">
+      <strong>📌 テキスト入力のコツ</strong>
+      箇条書きでも、ひとつながりの文章でもどちらでもOKです。<br>
+      例）「午前は〇〇の草刈り。午後はゲストハウスの清掃を2時間。」
+    </div>
+  </div>
+</section>
+
+<!-- 写真登録 -->
+<section>
+  <p class="section-title">写真を追加する</p>
+  <div class="method-card" style="border-color:#f5a623; background:#fffdf5;">
+    <h3><span class="method-label" style="background:#f5a623;">写真登録</span>📸 活動写真を日誌に追加</h3>
+    <div class="op-steps">
+      <div class="op-step">
+        <div class="emoji">1️⃣</div>
+        <div class="text">
+          <strong>メニューの「②写真を登録」をタップ</strong>
+          日付入力の案内が届きます
+        </div>
+      </div>
+      <div class="op-step">
+        <div class="emoji">📅</div>
+        <div class="text">
+          <strong>日付を入力して送信</strong>
+          例：4/10　4月10日　今日　昨日
+        </div>
+      </div>
+      <div class="op-step">
+        <div class="emoji">📸</div>
+        <div class="text">
+          <strong>写真を送信</strong>
+          登録したい写真をトーク画面から送ります
+        </div>
+      </div>
+      <div class="op-step">
+        <div class="emoji">✅</div>
+        <div class="text">
+          <strong>「✅ 追加する」をタップ</strong>
+          該当日のスプレッドシートに写真が追加されます
+        </div>
+      </div>
     </div>
   </div>
 </section>
 
 <!-- ボタンの説明 -->
 <section>
-  <p class="section-title">ボタンの説明</p>
+  <p class="section-title">確認画面のボタン説明</p>
   <div class="card">
     <div class="btn-list">
       <div class="btn-item">
@@ -310,12 +358,21 @@
       </div>
       <div class="btn-item">
         <div class="btn-label">✏️ 修正する</div>
-        <div class="btn-desc">内容に間違いがあれば、修正したい箇所をテキストで伝えられます。<br><span style="font-size:13px; color:#888;">例）「午後の作業時間を3時間に変えて」「日付を4月10日に変えて」</span></div>
+        <div class="btn-desc">
+          内容に間違いがあれば、修正指示をテキストで送れます。<br>
+          <span style="font-size:13px; color:#888;">例）「午後の作業時間を3時間に変えて」「日付を4月10日に変えて」</span><br>
+          修正後、再度確認画面が表示されます。
+        </div>
       </div>
       <div class="btn-item">
         <div class="btn-label">⛔ キャンセル</div>
         <div class="btn-desc">記録をやめたいときにタップ。何も記録されません。</div>
       </div>
+    </div>
+    <div class="caution">
+      <strong>🛑 AIが処理中にやめたいときは？</strong>
+      「キャンセル」とテキストで送信すると、処理中でも中断できます。<br>
+      確認画面のボタンが出ていない状態でも有効です。
     </div>
   </div>
 </section>
@@ -326,8 +383,8 @@
   <div class="card">
     <div class="faq-list">
       <div class="faq-item">
-        <div class="faq-q"><span class="q-badge">Q</span>うまく送れなかったときはどうすれば？</div>
-        <div class="faq-a">確認画面が出ている場合は「⛔ キャンセル」を押してください。キャンセル後、もう一度マイクボタンを長押しして音声を送り直せます。何度でもやり直しできます。記録は「✅ はい」を押したときだけ行われるので、間違えても安心です。</div>
+        <div class="faq-q"><span class="q-badge">Q</span>うまく送れなかった / やり直したいときは？</div>
+        <div class="faq-a">「⛔ キャンセル」をタップするか、「キャンセル」とテキストで送ってください。AIが処理中でも中断できます。キャンセル後、もう一度音声やテキストを送り直せます。記録は「✅ はい」を押したときだけ行われます。</div>
       </div>
       <div class="faq-item">
         <div class="faq-q"><span class="q-badge">Q</span>記録はどこで見られますか？</div>
@@ -335,15 +392,15 @@
       </div>
       <div class="faq-item">
         <div class="faq-q"><span class="q-badge">Q</span>その日のうちに送れなかったときは？</div>
-        <div class="faq-a">後日まとめて提出してください。その際、音声の中で「4月10日の業務です」と日付を伝えると、正しい日付で記録されます。「✏️ 修正する」ボタンでも日付の変更ができます。</div>
+        <div class="faq-a">後日まとめて送ってください。音声やテキストの中で「4月10日の業務です」と日付を伝えると、正しい日付で記録されます。「✏️ 修正する」ボタンでも日付の変更ができます。</div>
       </div>
       <div class="faq-item">
-        <div class="faq-q"><span class="q-badge">Q</span>登録直後にスプレッドシートが開けません</div>
-        <div class="faq-a">ご登録後、管理者がスプレッドシートを準備します。1〜3日ほどお時間をいただく場合があります。準備ができたらご連絡します。</div>
+        <div class="faq-q"><span class="q-badge">Q</span>音声とテキスト、どちらが便利ですか？</div>
+        <div class="faq-a">移動中・屋外では音声がおすすめです。静かな場所や、細かい内容を正確に伝えたいときはテキストが便利です。どちらも同じように記録されます。</div>
       </div>
       <div class="faq-item">
-        <div class="faq-q"><span class="q-badge">Q</span>個人の日報は他の人に見えますか？</div>
-        <div class="faq-a">このLINEから他のメンバーの日報を見ることはできません。スプレッドシートはおひとりずつ別々に管理されています。なお、管理者は業務上の確認のため、いつでも内容を閲覧できます。</div>
+        <div class="faq-q"><span class="q-badge">Q</span>個人の日誌は他の人に見えますか？</div>
+        <div class="faq-a">このLINEから他のメンバーの日誌を見ることはできません。スプレッドシートはおひとりずつ別々に管理されています。なお、管理者は業務上の確認のため、いつでも内容を閲覧できます。</div>
       </div>
     </div>
   </div>
