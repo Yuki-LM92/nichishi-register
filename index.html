@@ -210,7 +210,8 @@
           '音声を送ると日報が記録できます🎙️';
       }
     } catch (err) {
-      errEl.textContent = '送信に失敗しました: ' + (err.message || 'もう一度お試しください。');
+      const code = (err.message || '').match(/REG-\d+/) ? err.message.match(/REG-\d+/)[0] : 'REG-03';
+      errEl.textContent = `送信に失敗しました（${code}）。管理者にこのコードをお伝えください。`;
       errEl.style.display = 'block';
       btn.disabled = false;
       btn.textContent = '登録する';
