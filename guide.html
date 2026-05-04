@@ -3,206 +3,328 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>業務日誌サービス 使い方ガイド</title>
+  <title>使い方ガイド | 業務日誌サービス</title>
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --green-deep:  #3a6441;
+      --green-dark:  #2d5035;
+      --green-light: #4e8a5a;
+      --gold:        #c8a84a;
+      --gold-light:  #e8d07a;
+      --gold-pale:   #f5ecc8;
+      --cream:       #fdf9f3;
+      --paper:       #f2ede4;
+      --text-dark:   #1c2b1e;
+      --text-mid:    #4a5e4d;
+      --text-light:  #7a8f7d;
+      --amber:       #f5a623;
+      --blue:        #4a7fd4;
+    }
 
     body {
-      font-family: "Hiragino Sans", "Noto Sans JP", sans-serif;
-      background: #f0f4f0;
-      color: #1a1a1a;
-      font-size: 16px;
+      font-family: "Hiragino Sans", "Noto Sans JP", "Yu Gothic", sans-serif;
+      background: var(--paper);
+      color: var(--text-dark);
+      font-size: 15px;
       line-height: 1.7;
-      padding-bottom: 48px;
+      padding-bottom: 60px;
     }
 
-    /* ヘッダー */
+    /* ── ヘッダー ── */
     .hero {
-      background: #06C755;
-      color: white;
+      background: var(--green-deep);
       text-align: center;
-      padding: 36px 20px 28px;
+      padding: 40px 20px 32px;
+      position: relative;
+      overflow: hidden;
     }
-    .hero .icon { font-size: 48px; margin-bottom: 10px; }
-    .hero h1 { font-size: 22px; font-weight: 800; margin-bottom: 6px; }
-    .hero p { font-size: 15px; opacity: 0.9; }
-
-    /* セクション */
-    section { margin: 20px 16px 0; }
-
-    .section-title {
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 20% 80%, rgba(200,168,74,0.12) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(200,168,74,0.08) 0%, transparent 50%);
+      pointer-events: none;
+    }
+    .hero-icon {
+      width: 100px;
+      height: 100px;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 3px solid var(--gold);
+      box-shadow: 0 0 0 6px rgba(200,168,74,0.2), 0 8px 24px rgba(0,0,0,0.3);
+      margin-bottom: 16px;
+      position: relative;
+    }
+    .hero h1 {
+      font-size: 20px;
+      font-weight: 800;
+      color: #fff;
+      letter-spacing: 0.06em;
+      margin-bottom: 6px;
+      position: relative;
+    }
+    .hero-sub {
       font-size: 13px;
-      font-weight: 700;
-      color: #06C755;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      margin-bottom: 10px;
+      color: rgba(255,255,255,0.7);
+      letter-spacing: 0.04em;
+      position: relative;
+    }
+    .hero-rule {
+      width: 48px;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+      margin: 14px auto 0;
+      position: relative;
     }
 
-    /* カード */
-    .card {
-      background: white;
-      border-radius: 16px;
-      padding: 20px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
-    }
+    /* ── セクション ── */
+    .section { margin: 24px 16px 0; }
 
-    /* できること3つ */
-    .features {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-    .feature-item {
+    .section-label {
       display: flex;
       align-items: center;
+      gap: 8px;
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--gold);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+    .section-label::before,
+    .section-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold-pale));
+    }
+    .section-label::after {
+      background: linear-gradient(90deg, var(--gold-pale), transparent);
+    }
+
+    /* ── カード共通 ── */
+    .card {
+      background: var(--cream);
+      border-radius: 14px;
+      padding: 20px;
+      box-shadow: 0 2px 10px rgba(45,80,53,0.08);
+    }
+
+    /* ── できること ── */
+    .features { display: flex; flex-direction: column; gap: 10px; }
+    .feature-item {
+      display: flex;
+      align-items: flex-start;
       gap: 14px;
-      background: #f4fdf4;
+      background: #f3f7f3;
       border-radius: 12px;
       padding: 14px 16px;
-      border-left: 4px solid #06C755;
+      border-left: 4px solid var(--gold);
     }
-    .feature-icon { font-size: 28px; flex-shrink: 0; }
-    .feature-body h3 { font-size: 16px; font-weight: 700; margin-bottom: 2px; }
-    .feature-body p { font-size: 13px; color: #555; }
+    .feature-icon { font-size: 26px; flex-shrink: 0; margin-top: 2px; }
+    .feature-body h3 { font-size: 15px; font-weight: 700; margin-bottom: 3px; color: var(--text-dark); }
+    .feature-body p { font-size: 13px; color: var(--text-mid); }
 
-    /* ステップリスト共通 */
-    .steps { display: flex; flex-direction: column; gap: 12px; }
+    /* ── ステップ ── */
+    .steps { display: flex; flex-direction: column; gap: 10px; }
     .step { display: flex; align-items: flex-start; gap: 14px; }
     .step-num {
       min-width: 36px; height: 36px;
-      background: #06C755; color: white;
+      background: var(--green-deep);
+      border: 2px solid var(--gold);
+      color: var(--gold-light);
       border-radius: 50%;
       display: flex; align-items: center; justify-content: center;
-      font-size: 18px; font-weight: 800; flex-shrink: 0;
+      font-size: 17px; font-weight: 800;
+      flex-shrink: 0;
+      box-shadow: 0 2px 6px rgba(45,80,53,0.2);
     }
-    .step-body h3 { font-size: 17px; font-weight: 700; margin-bottom: 3px; }
-    .step-body p { font-size: 14px; color: #555; }
-    .step-arrow { text-align: center; font-size: 22px; color: #ccc; padding: 2px 0; }
+    .step-body h3 { font-size: 15px; font-weight: 700; margin-bottom: 3px; }
+    .step-body p { font-size: 13px; color: var(--text-mid); }
+    .step-arrow { text-align: center; color: var(--gold); font-size: 18px; padding: 2px 0 2px 8px; }
 
-    /* 操作手順（音声・写真） */
-    .op-steps { display: flex; flex-direction: column; gap: 10px; }
+    /* ── 操作手順 ── */
+    .op-steps { display: flex; flex-direction: column; gap: 8px; }
     .op-step {
-      display: flex; align-items: center; gap: 12px;
-      background: white; border-radius: 12px; padding: 12px 14px;
+      display: flex; align-items: flex-start; gap: 12px;
+      background: var(--cream); border-radius: 12px; padding: 12px 14px;
     }
-    .op-step .emoji { font-size: 26px; flex-shrink: 0; }
-    .op-step .text { font-size: 14px; }
-    .op-step .text strong { display: block; font-size: 15px; margin-bottom: 2px; }
+    .op-step .emoji { font-size: 24px; flex-shrink: 0; margin-top: 1px; }
+    .op-step .text { font-size: 13.5px; color: var(--text-mid); }
+    .op-step .text strong { display: block; font-size: 14px; font-weight: 700; color: var(--text-dark); margin-bottom: 2px; }
 
-    /* 入力方法セクション枠 */
+    /* ── メソッドカード ── */
     .method-card {
-      background: #f8fdf8;
-      border: 2px solid #06C755;
-      border-radius: 16px;
+      border-radius: 14px;
       padding: 20px;
+      border: 2px solid var(--gold);
+      background: var(--cream);
     }
-    .method-card h3 {
-      font-size: 17px; font-weight: 700;
-      margin-bottom: 14px;
+    .method-card + .method-card { margin-top: 14px; }
+    .method-card.alt  { border-color: var(--blue);   background: #f5f8fd; }
+    .method-card.photo{ border-color: var(--amber);  background: #fffdf5; }
+    .method-head {
+      font-size: 15px; font-weight: 700;
       display: flex; align-items: center; gap: 8px;
+      margin-bottom: 14px;
+      color: var(--text-dark);
     }
-    .method-label {
+    .method-badge {
       display: inline-block;
-      background: #06C755; color: white;
-      font-size: 11px; font-weight: 700;
+      font-size: 10px; font-weight: 700;
       padding: 2px 10px; border-radius: 20px;
-      margin-right: 6px;
+      background: var(--green-deep); color: var(--gold-light);
+      border: 1px solid var(--gold);
     }
-    .method-label.sub {
-      background: #4a90d9;
+    .method-badge.alt   { background: var(--blue);  color: #fff; border-color: var(--blue); }
+    .method-badge.photo { background: var(--amber); color: #fff; border-color: var(--amber); }
+
+    .divider-or {
+      text-align: center;
+      font-size: 12px;
+      color: var(--text-light);
+      letter-spacing: 0.1em;
+      margin: 14px 0;
+      display: flex; align-items: center; gap: 10px;
+    }
+    .divider-or::before, .divider-or::after {
+      content: ''; flex: 1;
+      height: 1px;
+      background: var(--gold-pale);
     }
 
-    /* 区切り */
-    .divider {
-      text-align: center; color: #ccc; font-size: 13px;
-      margin: 14px 0; letter-spacing: 2px;
-    }
-
-    /* ボタン説明 */
+    /* ── ボタン説明 ── */
     .btn-list { display: flex; flex-direction: column; gap: 10px; }
     .btn-item {
       display: flex; align-items: flex-start; gap: 12px;
-      padding: 14px; border-radius: 12px; background: #f9f9f9;
+      padding: 14px; border-radius: 12px;
+      background: #f3f7f3;
     }
     .btn-label {
-      flex-shrink: 0; font-size: 14px; font-weight: 700;
-      padding: 6px 12px; border-radius: 20px;
-      background: white; border: 1.5px solid #ddd; white-space: nowrap;
+      flex-shrink: 0; font-size: 13px; font-weight: 700;
+      padding: 5px 12px; border-radius: 20px;
+      background: var(--cream);
+      border: 1.5px solid var(--gold);
+      color: var(--text-dark);
+      white-space: nowrap;
     }
-    .btn-desc { font-size: 14px; color: #444; padding-top: 4px; }
+    .btn-desc { font-size: 13px; color: var(--text-mid); padding-top: 4px; }
+    .btn-desc small { display: block; font-size: 12px; color: var(--text-light); margin-top: 3px; }
 
-    /* FAQ */
-    .faq-list { display: flex; flex-direction: column; gap: 12px; }
-    .faq-item { background: #f9f9f9; border-radius: 12px; padding: 14px 16px; }
+    /* ── FAQ ── */
+    .faq-list { display: flex; flex-direction: column; gap: 10px; }
+    .faq-item {
+      background: #f3f7f3;
+      border-radius: 12px;
+      padding: 14px 16px;
+    }
     .faq-q {
-      font-size: 15px; font-weight: 700; margin-bottom: 6px;
-      display: flex; gap: 8px;
+      font-size: 14px; font-weight: 700;
+      margin-bottom: 6px;
+      display: flex; gap: 8px; align-items: flex-start;
+      color: var(--text-dark);
     }
-    .faq-q .q-badge { color: #06C755; font-weight: 800; flex-shrink: 0; }
-    .faq-a { font-size: 14px; color: #444; padding-left: 20px; }
+    .q-badge {
+      background: var(--green-deep);
+      color: var(--gold-light);
+      font-size: 11px; font-weight: 800;
+      padding: 1px 7px; border-radius: 4px;
+      flex-shrink: 0; margin-top: 2px;
+      border: 1px solid var(--gold);
+    }
+    .faq-a { font-size: 13px; color: var(--text-mid); padding-left: 28px; }
 
-    /* ヒント */
+    /* ── ヒント / 注意 ── */
     .tip {
-      background: #fffbe6;
-      border-left: 4px solid #f5c400;
+      background: var(--gold-pale);
+      border-left: 4px solid var(--gold);
       border-radius: 0 12px 12px 0;
-      padding: 12px 14px; font-size: 14px; margin-top: 12px;
+      padding: 12px 14px; font-size: 13px;
+      margin-top: 14px; color: var(--text-dark);
     }
-    .tip strong { display: block; margin-bottom: 4px; }
-
-    /* 注意 */
+    .tip strong { display: block; margin-bottom: 3px; font-size: 13.5px; }
+    .tip.blue {
+      background: #eef4ff;
+      border-left-color: var(--blue);
+    }
+    .tip.amber {
+      background: #fff8ec;
+      border-left-color: var(--amber);
+    }
     .caution {
-      background: #fff3f3;
-      border-left: 4px solid #e53935;
+      background: #fdf0f0;
+      border-left: 4px solid #d94040;
       border-radius: 0 12px 12px 0;
-      padding: 12px 14px; font-size: 14px; margin-top: 12px;
+      padding: 12px 14px; font-size: 13px;
+      margin-top: 14px; color: var(--text-dark);
     }
-    .caution strong { display: block; margin-bottom: 4px; color: #c62828; }
+    .caution strong { display: block; margin-bottom: 3px; color: #b03030; font-size: 13.5px; }
+
+    /* ── フッター ── */
+    footer {
+      margin-top: 36px;
+      text-align: center;
+      padding: 20px 16px;
+      background: var(--green-dark);
+    }
+    footer p { font-size: 12px; color: rgba(255,255,255,0.5); line-height: 2; }
+    footer a { color: var(--gold-light); text-decoration: none; }
   </style>
 </head>
 <body>
 
 <!-- ヘッダー -->
-<div class="hero">
-  <div class="icon">📋</div>
-  <h1>業務日誌サービス<br>使い方ガイド</h1>
-  <p>音声でもテキストでも、日誌が完成します</p>
-</div>
+<header class="hero">
+  <img src="icon.png" class="hero-icon" alt="業務日誌サービス">
+  <h1>使い方ガイド</h1>
+  <p class="hero-sub">業務日誌サービスのすべてがわかります</p>
+  <div class="hero-rule"></div>
+</header>
 
 <!-- できること -->
-<section>
-  <p class="section-title">このサービスでできること</p>
+<div class="section">
+  <p class="section-label">できること</p>
   <div class="card">
     <div class="features">
       <div class="feature-item">
         <div class="feature-icon">🎤</div>
         <div class="feature-body">
           <h3>音声で送る</h3>
-          <p>話すだけでAIが日誌の形に整理します</p>
+          <p>話すだけでAIが日誌の形に整理します。移動中でも1〜2分で完了</p>
         </div>
       </div>
       <div class="feature-item">
         <div class="feature-icon">📝</div>
         <div class="feature-body">
           <h3>テキストで送る</h3>
-          <p>文章を入力してもOK。音声が使えないときに便利</p>
+          <p>文章を入力してもOK。細かい内容を正確に伝えたいときに便利</p>
         </div>
       </div>
       <div class="feature-item">
         <div class="feature-icon">📸</div>
         <div class="feature-body">
           <h3>写真を追加する</h3>
-          <p>活動写真を日誌に紐づけて記録できます</p>
+          <p>活動写真をLINEから送るだけでスプレッドシートに添付されます</p>
+        </div>
+      </div>
+      <div class="feature-item">
+        <div class="feature-icon">🗓️</div>
+        <div class="feature-body">
+          <h3>週次サマリーを受け取る</h3>
+          <p>毎週金曜日の夜に今週の活動まとめが届きます。記録できていない日もお知らせします</p>
         </div>
       </div>
     </div>
   </div>
-</section>
+</div>
 
 <!-- 基本の流れ -->
-<section>
-  <p class="section-title">基本の流れ</p>
+<div class="section">
+  <p class="section-label">基本の流れ</p>
   <div class="card">
     <div class="steps">
       <div class="step">
@@ -218,32 +340,31 @@
         <div class="step-body">
           <h3>📋 内容を確認する</h3>
           <p>AIが内容を日誌の形に整理して表示します<br>
-          <span style="font-size:13px; color:#06C755;">（10〜30秒ほどかかります）</span></p>
+          <span style="font-size:12px; color: var(--green-light);">（10〜30秒ほどかかります）</span></p>
         </div>
       </div>
       <div class="step-arrow">↓</div>
       <div class="step">
         <div class="step-num">3</div>
         <div class="step-body">
-          <h3>✅ 「はい」をタップ</h3>
-          <p>内容が正しければタップするとスプレッドシートに自動記録されます</p>
+          <h3>✅「はい」をタップ</h3>
+          <p>スプレッドシートに自動記録されます</p>
         </div>
       </div>
     </div>
     <div class="tip">
       <strong>💡 移動中もOK！</strong>
-      帰り道や移動中に、今日あったことを<br>
-      ひとこと話す or 打つだけで日誌が完成します。
+      帰り道や移動中に今日あったことをひとこと話す or 打つだけで日誌が完成します。
     </div>
   </div>
-</section>
+</div>
 
-<!-- 入力方法① 音声 -->
-<section>
-  <p class="section-title">入力方法</p>
+<!-- 入力方法 -->
+<div class="section">
+  <p class="section-label">入力方法</p>
 
   <div class="method-card">
-    <h3><span class="method-label">方法①</span>🎤 音声で送る（おすすめ）</h3>
+    <p class="method-head"><span class="method-badge">方法①</span>🎤 音声で送る（おすすめ）</p>
     <div class="op-steps">
       <div class="op-step">
         <div class="emoji">1️⃣</div>
@@ -263,7 +384,7 @@
         <div class="emoji">🗣️</div>
         <div class="text">
           <strong>今日の業務内容を話す</strong>
-          <span style="color:#06C755; font-size:13px;">目安：15秒〜2分程度</span>
+          目安：15秒〜2分程度
         </div>
       </div>
       <div class="op-step">
@@ -274,17 +395,16 @@
         </div>
       </div>
     </div>
-    <div class="tip" style="margin-top:14px;">
+    <div class="tip">
       <strong>⏱️ 少し待ってください</strong>
-      送信後、AIが整理するまで10〜30秒かかります。<br>
-      メッセージが届くまでそのままお待ちください。
+      送信後、AIが整理するまで10〜30秒かかります。メッセージが届くまでそのままお待ちください。
     </div>
   </div>
 
-  <div class="divider" style="margin-top:14px;">── または ──</div>
+  <div class="divider-or">または</div>
 
-  <div class="method-card" style="border-color:#4a90d9; background:#f5f9ff; margin-top:14px;">
-    <h3><span class="method-label sub">方法②</span>📝 テキストで送る</h3>
+  <div class="method-card alt">
+    <p class="method-head"><span class="method-badge alt">方法②</span>📝 テキストで送る</p>
     <div class="op-steps">
       <div class="op-step">
         <div class="emoji">⌨️</div>
@@ -301,19 +421,19 @@
         </div>
       </div>
     </div>
-    <div class="tip" style="margin-top:14px; border-left-color:#4a90d9; background:#eef4ff;">
+    <div class="tip blue">
       <strong>📌 テキスト入力のコツ</strong>
       箇条書きでも、ひとつながりの文章でもどちらでもOKです。<br>
       例）「午前は〇〇の草刈り。午後はゲストハウスの清掃を2時間。」
     </div>
   </div>
-</section>
+</div>
 
-<!-- 写真登録 -->
-<section>
-  <p class="section-title">写真を追加する</p>
-  <div class="method-card" style="border-color:#f5a623; background:#fffdf5;">
-    <h3><span class="method-label" style="background:#f5a623;">写真登録</span>📸 活動写真を日誌に追加</h3>
+<!-- 写真を追加する -->
+<div class="section">
+  <p class="section-label">写真を追加する</p>
+  <div class="method-card photo">
+    <p class="method-head"><span class="method-badge photo">写真登録</span>📸 活動写真を日誌に追加</p>
     <div class="op-steps">
       <div class="op-step">
         <div class="emoji">1️⃣</div>
@@ -345,11 +465,11 @@
       </div>
     </div>
   </div>
-</section>
+</div>
 
-<!-- ボタンの説明 -->
-<section>
-  <p class="section-title">確認画面のボタン説明</p>
+<!-- 確認画面のボタン説明 -->
+<div class="section">
+  <p class="section-label">確認画面のボタン</p>
   <div class="card">
     <div class="btn-list">
       <div class="btn-item">
@@ -359,9 +479,8 @@
       <div class="btn-item">
         <div class="btn-label">✏️ 修正する</div>
         <div class="btn-desc">
-          内容に間違いがあれば、修正指示をテキストで送れます。<br>
-          <span style="font-size:13px; color:#888;">例）「午後の作業時間を3時間に変えて」「日付を4月10日に変えて」</span><br>
-          修正後、再度確認画面が表示されます。
+          内容に間違いがあれば、修正指示をテキストで送れます。修正後、再度確認画面が表示されます。
+          <small>例）「午後の作業時間を3時間に変えて」「日付を4月10日に変えて」</small>
         </div>
       </div>
       <div class="btn-item">
@@ -371,20 +490,19 @@
     </div>
     <div class="caution">
       <strong>🛑 AIが処理中にやめたいときは？</strong>
-      「キャンセル」とテキストで送信すると、処理中でも中断できます。<br>
-      確認画面のボタンが出ていない状態でも有効です。
+      「キャンセル」とテキストで送信すると、処理中でも中断できます。確認画面が出ていない状態でも有効です。
     </div>
   </div>
-</section>
+</div>
 
-<!-- FAQ -->
-<section>
-  <p class="section-title">よくある質問</p>
+<!-- よくある質問 -->
+<div class="section">
+  <p class="section-label">よくある質問</p>
   <div class="card">
     <div class="faq-list">
       <div class="faq-item">
         <div class="faq-q"><span class="q-badge">Q</span>うまく送れなかった / やり直したいときは？</div>
-        <div class="faq-a">「⛔ キャンセル」をタップするか、「キャンセル」とテキストで送ってください。AIが処理中でも中断できます。キャンセル後、もう一度音声やテキストを送り直せます。記録は「✅ はい」を押したときだけ行われます。</div>
+        <div class="faq-a">「⛔ キャンセル」をタップするか、「キャンセル」とテキストで送ってください。AIが処理中でも中断できます。キャンセル後、もう一度音声やテキストを送り直せます。</div>
       </div>
       <div class="faq-item">
         <div class="faq-q"><span class="q-badge">Q</span>記録はどこで見られますか？</div>
@@ -392,28 +510,27 @@
       </div>
       <div class="faq-item">
         <div class="faq-q"><span class="q-badge">Q</span>その日のうちに送れなかったときは？</div>
-        <div class="faq-a">後日まとめて送ってください。音声やテキストの中で「4月10日の業務です」と日付を伝えると、正しい日付で記録されます。「✏️ 修正する」ボタンでも日付の変更ができます。</div>
+        <div class="faq-a">後日まとめて送ってください。「4月10日の業務です」と日付を伝えると正しい日付で記録されます。「✏️ 修正する」ボタンでも日付の変更ができます。</div>
       </div>
       <div class="faq-item">
-        <div class="faq-q"><span class="q-badge">Q</span>音声とテキスト、どちらが便利ですか？</div>
-        <div class="faq-a">移動中・屋外では音声がおすすめです。静かな場所や、細かい内容を正確に伝えたいときはテキストが便利です。どちらも同じように記録されます。</div>
+        <div class="faq-q"><span class="q-badge">Q</span>週次サマリーはいつ届きますか？</div>
+        <div class="faq-a">毎週金曜日の夜19時ごろに届きます。その週（月〜金）の記録をまとめてお届けします。記録できていない日があればあわせてお知らせします。</div>
       </div>
       <div class="faq-item">
         <div class="faq-q"><span class="q-badge">Q</span>個人の日誌は他の人に見えますか？</div>
-        <div class="faq-a">このLINEから他のメンバーの日誌を見ることはできません。スプレッドシートはおひとりずつ別々に管理されています。なお、管理者は業務上の確認のため、いつでも内容を閲覧できます。</div>
+        <div class="faq-a">このLINEから他のメンバーの日誌を見ることはできません。スプレッドシートはおひとりずつ別々に管理されています。なお、管理者は業務上の確認のため内容を閲覧できます。</div>
       </div>
     </div>
   </div>
-</section>
+</div>
 
 <!-- フッター -->
-<section style="margin-top: 24px; text-align: center;">
-  <div style="font-size: 13px; color: #aaa; line-height: 2;">
-    困ったことがあれば<br>
-    メニューの「フィードバック・お問い合わせ」から<br>
-    いつでもご連絡ください🙏
-  </div>
-</section>
+<footer>
+  <p>
+    困ったことはメニューの「フィードバック・お問い合わせ」からいつでもご連絡ください🙏<br>
+    <a href="updates.html">アップデート情報</a>
+  </p>
+</footer>
 
 </body>
 </html>
