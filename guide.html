@@ -318,6 +318,27 @@
           <p>毎週金曜日の夜に今週の活動まとめが届きます。記録できていない日もお知らせします</p>
         </div>
       </div>
+      <div class="feature-item">
+        <div class="feature-icon">🔍</div>
+        <div class="feature-body">
+          <h3>今日の記録を確認する</h3>
+          <p>「今日の記録を確認」と送ると、その日の記録内容（備考も含む）がLINEに届きます</p>
+        </div>
+      </div>
+      <div class="feature-item">
+        <div class="feature-icon">📊</div>
+        <div class="feature-body">
+          <h3>今週の記録状況を確認する</h3>
+          <p>「今週の記録状況を教えて」と送ると、記録済み・未記録の日を一覧で確認できます</p>
+        </div>
+      </div>
+      <div class="feature-item">
+        <div class="feature-icon">✏️</div>
+        <div class="feature-body">
+          <h3>記録後に内容を修正する</h3>
+          <p>記録完了後でも「✏️ 内容を修正する」ボタンから内容を直せます</p>
+        </div>
+      </div>
     </div>
   </div>
 </div>
@@ -488,9 +509,35 @@
         <div class="btn-desc">記録をやめたいときにタップ。何も記録されません。</div>
       </div>
     </div>
+    <div class="tip">
+      <strong>✏️ 記録完了後でも修正できます</strong>
+      「✅ はい」で記録した後に「✏️ 内容を修正する」ボタンが表示されます。タップして修正指示を送ると、上書きで記録し直せます。
+    </div>
     <div class="caution">
       <strong>🛑 AIが処理中にやめたいときは？</strong>
       「キャンセル」とテキストで送信すると、処理中でも中断できます。確認画面が出ていない状態でも有効です。
+    </div>
+  </div>
+</div>
+
+<!-- キーワードコマンド -->
+<div class="section">
+  <p class="section-label">便利なキーワード</p>
+  <div class="card">
+    <p style="font-size:13px; color: var(--text-mid); margin-bottom: 14px;">以下のキーワードをそのまま送ると、特別な操作ができます。</p>
+    <div class="btn-list">
+      <div class="btn-item">
+        <div class="btn-label" style="white-space: normal; min-width: auto; width: 160px;">今日の記録を確認</div>
+        <div class="btn-desc">その日の記録内容（活動内容・備考）がLINEで届きます。</div>
+      </div>
+      <div class="btn-item">
+        <div class="btn-label" style="white-space: normal; min-width: auto; width: 160px;">今週の記録状況を教えて</div>
+        <div class="btn-desc">今週（月〜金）で記録済みの日・未記録の日を一覧で確認できます。</div>
+      </div>
+      <div class="btn-item">
+        <div class="btn-label">キャンセル</div>
+        <div class="btn-desc">処理中・確認待ち・写真登録の途中でも、いつでも中断できます。</div>
+      </div>
     </div>
   </div>
 </div>
@@ -502,11 +549,19 @@
     <div class="faq-list">
       <div class="faq-item">
         <div class="faq-q"><span class="q-badge">Q</span>うまく送れなかった / やり直したいときは？</div>
-        <div class="faq-a">「⛔ キャンセル」をタップするか、「キャンセル」とテキストで送ってください。AIが処理中でも中断できます。キャンセル後、もう一度音声やテキストを送り直せます。</div>
+        <div class="faq-a">「⛔ キャンセル」をタップするか、「キャンセル」とテキストで送ってください。AIが処理中でも、写真登録の途中でも中断できます。キャンセル後、もう一度音声やテキストを送り直せます。</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q"><span class="q-badge">Q</span>記録した後に内容を直したいときは？</div>
+        <div class="faq-a">記録完了後に届く「✏️ 内容を修正する」ボタンをタップして、修正内容をテキストで送ってください。上書きで記録し直されます。<br><small style="color: var(--text-light);">例）「備考に〇〇を追加して」「午後の時間を2時間に変えて」</small></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q"><span class="q-badge">Q</span>今日の記録内容を確認したいときは？</div>
+        <div class="faq-a">「今日の記録を確認」とそのまま送ってください。活動内容・備考を含めた記録内容がLINEで届きます。</div>
       </div>
       <div class="faq-item">
         <div class="faq-q"><span class="q-badge">Q</span>記録はどこで見られますか？</div>
-        <div class="faq-a">メニューの「スプレッドシートを開く」から確認できます。日付ごとにシートが分かれています。</div>
+        <div class="faq-a">メニューの「スプレッドシートを開く」から確認できます。日付ごとにシートが分かれています。また「今日の記録を確認」とLINEで送ると、その場で内容を確認することもできます。</div>
       </div>
       <div class="faq-item">
         <div class="faq-q"><span class="q-badge">Q</span>その日のうちに送れなかったときは？</div>
